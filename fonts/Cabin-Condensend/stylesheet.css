@@ -1,0 +1,48 @@
+@font-face {
+    font-family: 'Cabin Condensed';
+    src: url('CabinCondensed-Regular.eot');
+    src: local('Cabin Condensed Regular'), local('CabinCondensed-Regular'),
+        url('CabinCondensed-Regular.eot?#iefix') format('embedded-opentype'),
+        url('CabinCondensed-Regular.woff2') format('woff2'),
+        url('CabinCondensed-Regular.woff') format('woff'),
+        url('CabinCondensed-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cabin Condensed';
+    src: url('CabinCondensed-Medium.eot');
+    src: local('Cabin Condensed Medium'), local('CabinCondensed-Medium'),
+        url('CabinCondensed-Medium.eot?#iefix') format('embedded-opentype'),
+        url('CabinCondensed-Medium.woff2') format('woff2'),
+        url('CabinCondensed-Medium.woff') format('woff'),
+        url('CabinCondensed-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cabin Condensed';
+    src: url('CabinCondensed-SemiBold.eot');
+    src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'),
+        url('CabinCondensed-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('CabinCondensed-SemiBold.woff2') format('woff2'),
+        url('CabinCondensed-SemiBold.woff') format('woff'),
+        url('CabinCondensed-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cabin Condensed';
+    src: url('CabinCondensed-Bold.eot');
+    src: local('Cabin Condensed Bold'), local('CabinCondensed-Bold'),
+        url('CabinCondensed-Bold.eot?#iefix') format('embedded-opentype'),
+        url('CabinCondensed-Bold.woff2') format('woff2'),
+        url('CabinCondensed-Bold.woff') format('woff'),
+        url('CabinCondensed-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+

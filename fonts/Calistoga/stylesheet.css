@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'Calistoga';
+    src: url('Calistoga-Regular.eot');
+    src: local('Calistoga Regular'), local('Calistoga-Regular'),
+        url('Calistoga-Regular.eot?#iefix') format('embedded-opentype'),
+        url('Calistoga-Regular.woff2') format('woff2'),
+        url('Calistoga-Regular.woff') format('woff'),
+        url('Calistoga-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
