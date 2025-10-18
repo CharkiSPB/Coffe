@@ -4,9 +4,128 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coffee Haven</title>
+  <title>Coffee Charki</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="./style.css">
+  <style>
+    .burger {
+      display: none;
+      border: 0;
+      background: var(--primary-color);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      padding: 10px;
+      z-index: 1100;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      cursor: pointer;
+    }
+
+    .burger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: #1D4E1A;
+      margin: 0;
+      transition: transform .3s, opacity .3s;
+      flex: 0 0 2px;
+      border-radius: 1px;
+    }
+
+    .header__bar {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .burger {
+        display: block;
+      }
+
+      .nav__header {
+        display: none;
+      }
+
+      .nav__header.open {
+        display: flex;
+        position: fixed;
+        top: 72px;
+        right: 20px;
+        width: 312px;
+        height: 158px;
+        background: #2D5A27;
+        border-radius: 24px;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      }
+
+      .nav__header.open .nav__list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        background: transparent;
+        backdrop-filter: none;
+        border-radius: 0;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+      }
+
+      .nav__header.open .nav__link {
+        font-size: 0.95rem;
+        line-height: 1.2;
+        text-align: center;
+        padding: 4px 8px;
+      }
+
+      .nav__header.open .logo-container {
+        display: none;
+      }
+
+      body.menu-open {
+        overflow: hidden;
+      }
+
+      .burger.open span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+      }
+
+      .burger.open span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .burger.open span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+      }
+
+      .header__bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 20px;
+      }
+
+      .header__brand {
+        display: block;
+      }
+
+      .header__brand .logo {
+        height: 40px;
+        width: auto;
+      }
+
+      .burger {
+        display: flex;
+        position: static;
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -18,7 +137,15 @@
   <section class="hero" data-scroll>
     <div class="container">
       <header class="header">
-        <nav class="nav__header">
+        <div class="header__bar">
+          <div class="header__brand">
+            <img src="./img/Logo.svg" alt="Coffee Haven Logo" class="logo">
+          </div>
+          <button class="burger" aria-label="Toggle menu" aria-controls="navMenu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+        <nav class="nav__header" id="navMenu">
           <ul class="nav__list">
             <li class="nav__link">Menu</li>
             <li class="nav__link">Location</li>
@@ -292,23 +419,15 @@
           </ul>
         </div>
       </div>
-      <img src="./img/Brewhaus.png" alt="Brewhaus">
+      <img src="./img/Brewhaus.png" alt="Brewhaus" class="footer-logotip">
+
       <div class="copyright">
-        &copy; 2025 Brewhaus. Все права защищены.
+        &copy; 2025 Charki. Web Desing.
       </div>
     </div>
   </footer>
 
-  <!-- <section class="contact" data-scroll>
-    <div class="container">
-      <h2 class="contact__title">Contact Us</h2>
-      <p class="contact__subtitle">Find our locations across the city or book a table online.</p>
-      <button class="contact__btn">Book Your Table</button>
-      <div class="footer__img">
-        <img src="./img/Brewhaus.png" alt="Footer Images">
-      </div>
-    </div>
-  </section> -->
+
 
   <script src="https://unpkg.com/gsap/dist/gsap.min.js"></script>
   <script>
@@ -350,17 +469,17 @@
         handleScrollAnimation();
       });
 
-      // Инициализация анимации при загрузке
+      
       handleScrollAnimation();
 
-      // Бегущая строка
+      
       const marquee = document.querySelector('[data-marquee]');
       if (marquee) {
         const clone = marquee.querySelector('.stroka').cloneNode(true);
         marquee.appendChild(clone);
       }
 
-      // Анимация кнопок
+      
       const buttons = document.querySelectorAll('.hero__btn, .contact__btn');
       buttons.forEach(button => {
         button.addEventListener('mouseenter', () => {
@@ -374,6 +493,64 @@
     });
 
 
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const burger = document.querySelector('.burger');
+      const navHeader = document.getElementById('navMenu');
+      if (!burger || !navHeader) return;
+
+      const closeMenu = () => {
+        document.body.classList.remove('menu-open');
+        navHeader.classList.remove('open');
+        burger.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+      };
+
+      burger.addEventListener('click', () => {
+        const open = document.body.classList.toggle('menu-open');
+        navHeader.classList.toggle('open', open);
+        burger.classList.toggle('open', open);
+        burger.setAttribute('aria-expanded', String(open));
+      });
+
+      navHeader.addEventListener('click', (e) => {
+        if (e.target.classList && e.target.classList.contains('nav__link')) {
+          closeMenu();
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeMenu();
+        }
+      });
+    });
+  </script>
+<button class="to-top" aria-label="Scroll to top" title="Наверх">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const toTop = document.querySelector('.to-top');
+      if (!toTop) return;
+
+      const toggleVisibility = () => {
+        if (window.scrollY > 200) {
+          toTop.classList.add('show');
+        } else {
+          toTop.classList.remove('show');
+        }
+      };
+
+      window.addEventListener('scroll', toggleVisibility, { passive: true });
+      toggleVisibility();
+
+      toTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
   </script>
 </body>
 
